@@ -3,6 +3,9 @@
 #include <algorithm> // For std::min_element, std::max_element
 #include <vector>    // For std::vector
 
+using namespace std;
+
+
 /**
  * SELECTION SORT
  * Logic: Find the smallest, move it to the new list, repeat.
@@ -16,9 +19,22 @@ std::vector<int> SelectionSort(std::vector<int> A) {
            2. To get the actual integer value from an iterator 'it', use *it.
            3. To remove an element by its iterator, use A.erase(it).
         */
-        
         // TODO: Find min, push to B, erase from A
+
+        /*----------------------------------------------------------------------*/
+
+        auto it = min_element(A.begin(), A.end());  // find 'iterator' of minimum element
+
+        int x = *it; //dereference iterator to get integer value
+
+        A.erase(it); // remove minimum element from A
+
+        B.push_back(x); // add minimum element to B
+
+         /*----------------------------------------------------------------------*/
+
     }
+
     return B;
 }
 
@@ -33,6 +49,10 @@ std::vector<int> Merge(std::vector<int> left, std::vector<int> right) {
     
     // TODO: Compare left[i] and right[j], push the smaller one to 'result'
     // Don't forget to push any remaining elements after one side is empty!
+
+
+
+
 
     return result;
 }
@@ -57,6 +77,24 @@ std::vector<int> MergeSort(std::vector<int> A) {
     // 3. Recursive calls: MergeSort(left) and MergeSort(right)
     // 4. Return Merge() of the two sorted results
 
+    /*----------------------------------------------------------------------*/
+
+    int n = A.size(); //define n
+
+    int mid = (n / 2); //calculate mid index
+    
+    if (n == 1) { return A; } //base case
+
+    std::vector<int> left_half(A.begin(), A.begin() + mid); //define left half
+
+    std::vector<int> right_half(A.begin() + mid+1, A.begin() + n); //define right half
+
+    return Merge( //recursive step
+        MergeSort(left_half),
+        MergeSort(right_half)
+    );
+
+    /*----------------------------------------------------------------------*/
     return A; 
 }
 
