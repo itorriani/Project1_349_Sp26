@@ -50,6 +50,34 @@ std::vector<int> Merge(std::vector<int> left, std::vector<int> right) {
     // TODO: Compare left[i] and right[j], push the smaller one to 'result'
     // Don't forget to push any remaining elements after one side is empty!
 
+    /*----------------------------------------------------------------------*/
+
+    size_t n = left.size(); //define size of left array
+
+    size_t m = right.size(); //define size of right array
+
+    size_t i = 0; //create i iterator for left
+
+    size_t j = 0; //create j iterator for right
+
+    
+    while (i < n && j < m) // while our iterators are less than size of both arrays
+    {
+        if (left[i] <= right[j]) //if left current element is less/equal to right
+        {
+            result.push_back(left[i++]); //apend it to result
+
+        } else 
+        {
+            result.push_back(right[j++]); //oterhwise append right side element
+        }
+    }
+
+    while (i < n) { result.push_back(left[i++]); } // append any remaining values from left
+
+    while (j < m) { result.push_back(right[j++]); } // apend any remaining values from right
+    
+    /*----------------------------------------------------------------------*/
 
 
 
