@@ -79,9 +79,6 @@ std::vector<int> Merge(std::vector<int> left, std::vector<int> right) {
     
     /*----------------------------------------------------------------------*/
 
-
-
-
     return result;
 }
 
@@ -145,5 +142,30 @@ std::vector<int> CountingSort(std::vector<int> A) {
     // 2. Create a frequency vector 'T' initialized to zeros: std::vector<int> T(range, 0);
     // 3. Fill B by iterating through T and adding the original values back in order
 
+    /*----------------------------------------------------------------------*/
+
+    auto maxit = max_element(A.begin(), A.end()); // Find the max element iterator
+
+    auto minit = min_element(A.begin(), A.end()); // Find the minimum element iterator
+
+    int maxElement = *maxit; //Dereference max element iterator
+
+    int minElement = *minit; //Dereference min element iterator
+
+    vector<int> T(maxElement + 1, 0); //create empty frequency array
+
+    for (int i = minElement; i <= maxElement; i++) { T[i] = 0; } //populate with 0s
+
+    for (int num : A) { T[num]++; } // populate frequency array
+
+    vector<int> B; //create empty sequence B
+
+    for (int i = minElement; i <= maxElement; i++)
+    {
+        for (int j = 1; j <= T[i]; j++) { B.push_back(i); }
+    }
+
+
+    /*----------------------------------------------------------------------*/
     return {}; 
 }
