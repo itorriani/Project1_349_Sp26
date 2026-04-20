@@ -112,7 +112,7 @@ std::vector<int> MergeSort(std::vector<int> A) {
 
     std::vector<int> left_half(A.begin(), A.begin() + mid); //define left half
 
-    std::vector<int> right_half(A.begin() + mid+1, A.begin() + n); //define right half
+    std::vector<int> right_half(A.begin() + mid, A.end()); //define right half
 
     return Merge( //recursive step
         MergeSort(left_half),
@@ -152,17 +152,19 @@ std::vector<int> CountingSort(std::vector<int> A) {
 
     int minElement = *minit; //Dereference min element iterator
 
-    vector<int> T(maxElement + 1, 0); //create empty frequency array
+    int range = maxElement - minElement + 1; //introduce range for T array
+
+    vector<int> T(range, 0); //create empty frequency array
 
     for (int i = minElement; i <= maxElement; i++) { T[i] = 0; } //populate with 0s
 
-    for (int num : A) { T[num]++; } // populate frequency array
+    for (int num : A) { T[num - minElement]++; } // populate frequency array
 
     vector<int> B; //create empty sequence B
 
     for (int i = minElement; i <= maxElement; i++)
     {
-        for (int j = 1; j <= T[i]; j++) { B.push_back(i); }
+        for (int j = 1; j <= T[i - minElement]; j++) { B.push_back(i); }
     }
 
 
