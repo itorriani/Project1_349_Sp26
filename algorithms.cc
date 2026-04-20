@@ -156,8 +156,6 @@ std::vector<int> CountingSort(std::vector<int> A) {
 
     vector<int> T(range, 0); //create empty frequency array
 
-    for (int i = minElement; i <= maxElement; i++) { T[i] = 0; } //populate with 0s
-
     for (int num : A) { T[num - minElement]++; } // populate frequency array
 
     vector<int> B; //create empty sequence B
@@ -169,5 +167,5 @@ std::vector<int> CountingSort(std::vector<int> A) {
 
 
     /*----------------------------------------------------------------------*/
-    return {}; 
+    return B; 
 }
